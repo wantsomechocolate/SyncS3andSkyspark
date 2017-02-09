@@ -1,0 +1,30 @@
+This is the line that works to run the script every 15 minutes
+*/15 * * * * /absolute/path/to/env/bin/python /absolute/path/to/sync_logfiles.py
+
+don't forget to set the following environment variables in the crontab file as well
+CODEGREENAPPS_DB
+AWS_S3_KEY_CG
+AWS_S3_SECRET_CG
+AWS_S3_BUCKET_NAME_CG
+AWS_S3_BUCKET_PREFIX_CG
+
+using 
+ENV_VAR="VALUE"
+
+anywhere in file above the cron command
+
+
+
+
+
+Final Version on EEEPC
+
+AWS_S3_KEY_CG="AKIAJ7QDKWCW6DIDGYTQ"
+AWS_S3_SECRET_CG="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"
+CODEGREENAPPS_DB="postgres://tjeoajmjkcwwob:O8ustRBiVgscfjhRKDRzVHxt6j@ec2-23-23-248-137.compute-1.amazonaws.com:5432/d29pvt193bqoqj"
+AWS_S3_BUCKET_NAME_CG="codegreen-logfiles"
+AWS_S3_BUCKET_PREFIX_CG="acquisuite"
+
+*/5 * * * * /home/codegreenengineering/Code/SyncS3andSkyspark/env/bin/python /home/codegreenengineering/Code/SyncS3andSkyspark/sync_l$
+
+

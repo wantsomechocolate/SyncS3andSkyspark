@@ -1,0 +1,33 @@
+#---------------------------------------------------
+#-------------------General Setup-------------------
+#---------------------------------------------------
+
+#Using 
+#ENV_VAR="VALUE"
+#Set any necessary env variables
+
+CODEGREENAPPS_DB="..."
+AWS_S3_KEY_CG="..."
+AWS_S3_SECRET_CG="..."
+AWS_S3_BUCKET_NAME_CG="..."
+AWS_S3_BUCKET_PREFIX_CG="..."
+
+#Then anywhere below the env variables, set your script to run at the desired time
+
+#This is a line that works to run the script every 15 minutes
+*/15 * * * * /absolute/path/to/env/bin/python /absolute/path/to/sync_logfiles.py
+
+
+#---------------------------------------------------
+#--------------Final Version on EEEPC---------------
+#---------------------------------------------------
+
+AWS_S3_KEY_CG="..."
+AWS_S3_SECRET_CG="..."
+CODEGREENAPPS_DB="..."
+AWS_S3_BUCKET_NAME_CG="..."
+AWS_S3_BUCKET_PREFIX_CG="..."
+
+#Used every 5 minutes instead
+*/5 * * * * /home/codegreenengineering/Code/SyncS3andSkyspark/env/bin/python /home/codegreenengineering/Code/SyncS3andSkyspark/sync_logfiles.py >> /home/codegreenengineering/Code/SyncS3andSkyspark/cron_output.log 2>&1
+
