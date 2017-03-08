@@ -84,29 +84,30 @@ def save_files_newer_than(save_dir='io/logfiles',table_name='log_files', date_co
 
         #multiplier=9
         
-        #offset_days=0
+        offset_days=0
         #duration_days=1
-        duration_hours=25
-        #duration_minutes=60*24*7
+        #duration_hours=1
+        duration_minutes=60
 
         #duration=timedelta(days=duration_days)
-        duration=timedelta(hours=duration_hours)
-        #duration=timedelta(minutes=duration_minutes)
-        #offset=timedelta(days=offset_days)
+        #duration=timedelta(hours=duration_hours)
+        duration=timedelta(minutes=duration_minutes)
+        offset=timedelta(days=offset_days)
 
         from_date=(datetime.utcnow()-duration) #-offset
+        #from_date=datetime(2016,12,31,0,0,0)
         to_date=datetime.utcnow() #-offset
 
-        #from_date=datetime(2017,1,31,0,0,0)
-        #to_date=datetime(2017,2,5,0,0,0)
+        das_id="001EC6052E9A"
+        das_id2="001EC60020E0"
+        das_id3="001EC6051D64"
 
-        das_id="001EC6002304" #90WCD
-        #das_id="001EC60020E0" #andaz
-        #das_id="001EC6052E9A" #400 madison
-        #das_id="001EC6051D64" # woodhaven
+        #das_tuple=(das_id,das_id2,das_id3)
+
+        ## Change query to allow for all serial numbers (all Acquisuites) because filters are applied later in the code
         
-        query_string = """SELECT * FROM log_files WHERE das_id = %(das_id)s AND date_added >= %(from_date)s AND date_added < %(to_date)s"""
-        query_params = {'das_id' : das_id, 'from_date': from_date, 'to_date': to_date}
+        query_string = """SELECT * FROM log_files WHERE (das_id = %(das_id)s OR das_id = %(das_id2)s OR das_id = %(das_id3)s) AND date_added >= %(from_date)s AND date_added < %(to_date)s"""
+        query_params = {'das_id' : das_id, 'das_id2' : das_id2, 'das_id3' : das_id3, 'from_date': from_date, 'to_date': to_date}
 
         ## Execute the query
         log_write("Querying the table {} for file that are less than {} old based on the {} column".format(table_name, interval_string, date_column), print_to_terminal=True)
@@ -143,7 +144,7 @@ def save_files_newer_than(save_dir='io/logfiles',table_name='log_files', date_co
     for record in records:
 
 ## ADDED BECAUSE OF LICENSE ISSUE
-        if record[6]==das_id or record[1].startswith(das_id):
+        if record[6]=='001EC6052E9A' or record[1].startswith('001EC6052E9A') or record[6]=='001EC60020E0' or record[1].startswith('001EC60020E0'):
 
             #log_write("Record: {}".format(record), print_to_terminal=True)
 
@@ -228,11 +229,11 @@ BASE_DIR=os.path.dirname(os.path.realpath(__file__))
 #Save dir for skyspark2
 #SAVE_DIR='/opt/skyspark/db/demo/io/logfiles'
 #Save dir for skyspark3
-SAVE_DIR='/opt/skyspark3/var/proj/tenantBilling/io/logfiles'
+SAVE_DIR='/opt/skyspark3/var/proj/codeGreen/io/logfiles'
 TABLE_NAME='log_files'
 DATE_COLUMN='date_added'
 #INTERVAL_STRING='2 hours'
-INTERVAL_STRING='7 days'
+INTERVAL_STRING='1 hour'
 # This is only here because I already have env variable pointing somewhere else, usually this is fetched from within connection function
 BUCKET_PREFIX='acquisuite'
 save_files_newer_than(save_dir=SAVE_DIR, table_name = TABLE_NAME, date_column=DATE_COLUMN, interval_string=INTERVAL_STRING, bucket_prefix=BUCKET_PREFIX)

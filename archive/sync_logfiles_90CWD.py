@@ -86,19 +86,19 @@ def save_files_newer_than(save_dir='io/logfiles',table_name='log_files', date_co
         
         #offset_days=0
         #duration_days=1
-        #duration_hours=1
+        duration_hours=25
         #duration_minutes=60*24*7
 
         #duration=timedelta(days=duration_days)
-        #duration=timedelta(hours=duration_hours)
+        duration=timedelta(hours=duration_hours)
         #duration=timedelta(minutes=duration_minutes)
         #offset=timedelta(days=offset_days)
 
-        #from_date=(datetime.utcnow()-duration) #-offset
-        #to_date=datetime.utcnow() #-offset
+        from_date=(datetime.utcnow()-duration) #-offset
+        to_date=datetime.utcnow() #-offset
 
-        from_date=datetime(2017,1,31,0,0,0)
-        to_date=datetime(2017,2,5,0,0,0)
+        #from_date=datetime(2017,1,31,0,0,0)
+        #to_date=datetime(2017,2,5,0,0,0)
 
         das_id="001EC6002304" #90WCD
         #das_id="001EC60020E0" #andaz
@@ -109,7 +109,7 @@ def save_files_newer_than(save_dir='io/logfiles',table_name='log_files', date_co
         query_params = {'das_id' : das_id, 'from_date': from_date, 'to_date': to_date}
 
         ## Execute the query
-        log_write("Querying the table {} for file that are less than {} old based on the {} column".format(table_name, interval_string, date_column), print_to_terminal=True)
+        log_write("Querying the table {} for files within date range".format(table_name), print_to_terminal=True)
         #cur = query_db(conn,query_string)
         cur = query_db(conn,query_string,query_params)
         
