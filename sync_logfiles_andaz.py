@@ -21,7 +21,11 @@ query_string = """SELECT * FROM log_files WHERE das_id = %(das_id)s AND date_add
 query_params = {'das_id' : das_id, 'from_date': from_date, 'to_date': to_date}
 
 ## Other stuff
-SAVE_DIR='/var/skyspark/proj/andazHotel/io/logfiles'        
+#SAVE_DIR='/var/skyspark/proj/andazHotel/io/logfiles'
+
+#SAVE_DIR='/home/skyspark/Projects/Skyspark/skyspark-3.0.10/var/proj/andaz/io/logfiles'
+SAVE_DIR='/home/skyspark/Projects/Skyspark/Global/var/skyspark/proj/andazHotel/io/logfiles'
+
 TABLE_NAME='log_files'
 DATE_COLUMN='date_added'
 
