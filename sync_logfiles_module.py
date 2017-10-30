@@ -64,20 +64,20 @@ def save_files_newer_than(
     query_string,
     query_params,
     from_date=datetime.utcnow()-timedelta(minutes=60),
-    to_date=datetime.utcnow(),    
+    to_date=datetime.utcnow(),
     save_dir='io/logfiles',
     table_name='log_files',
     date_column='date_added',
     ):
 
     import psycopg2
-    
+
     from datetime import timedelta
-    
+
     ## Start logfile
     #log = open('log.txt','a')
     #seperator="\n------------------------------------------------------------\n"
-    
+
     log_write("Starting logfile transfer", print_to_terminal=True)
 
     ## Connect to DB and retrieve records
@@ -90,19 +90,19 @@ def save_files_newer_than(
         log_write("Querying the table {} for files".format(table_name), print_to_terminal=True)
         #cur = query_db(conn,query_string)
         cur = query_db(conn,query_string,query_params)
-        
+
         log_write("Query successful", print_to_terminal=True)
-    
+
         ## Fetch the records
         log_write("Fetching the records associated with the query", print_to_terminal=True)
         records = cur.fetchall()
         log_write("{} records were retrieved".format(len(records)), print_to_terminal=True)
-        
+
     except psycopg2.OperationalError:
         log_write("There was an operational error, This probably means that there is no internet connection, exiting", print_to_terminal=True)
         goodbye=1/0
 
-    
+
     ## Connect to the AWS S3 bucket
     try:
         log_write("Attempting to connect to S3", print_to_terminal=True)
@@ -111,7 +111,7 @@ def save_files_newer_than(
     except socket.gaierror:
         log_write("Error connecting to S3, probably internet connectivity, exiting", print_to_terminal=True)
         goodbye=1/0
-    
+
 
     log_write("Starting to loop through records and save in: {}".format(save_dir), print_to_terminal=True)
     ## Save each record
@@ -143,8 +143,13 @@ def save_files_newer_than(
             server_id=server_id_device_id.split("_")[0]
             device_id=server_id_device_id.split("_")[1]
 
+	## I need to get the dbid of the logfile record and add it to the filename here so I have it available to 
+	## add to the filename.
+	## I'm going to go out on a limb here and say that the dbid is the first field in the record, fingers crossed!
+	logfile_dbid = str(record[0])
+
         ## Put the filename together. server_id, device_id, date_added, and file extension
-        filename = server_id+"_"+device_id+date_added_string+s3_key_file_ext
+        filename = server_id+"_"+device_id+"_"+logfile_dbid+date_added_string+s3_key_file_ext
 
         ## Get the serial number and modbus ID from the filename to create the final save directory location
         #filename_parts = filename.split('_')
@@ -164,10 +169,10 @@ def save_files_newer_than(
         ## Check to see if save directory exists
         if not os.path.exists(save_dir_device):
             log_write("Save directory doesn't exist, making it now",  print_to_terminal=True)
-            ## makedirs will create all directories down to the last one even if some of the intermediate ones don't exist. 
+            ## makedirs will create all directories down to the last one even if some of the intermediate ones don't exist.
             os.makedirs(save_dir_device)
 
-        
+
         ## Check to see if file exists
         if not os.path.exists(filepath):
             ## If it doesn't then try saving the file

@@ -1,3 +1,9 @@
+## To run this:
+## navigate to directory with script
+## source env/bin/activate
+## python sync_logfiles_historical.py
+
+
 import sync_logfiles_module as sync
 from datetime import timedelta
 from datetime import datetime
@@ -10,47 +16,50 @@ from datetime import datetime
 ## The main dictionary for skyspark projects. Comment out lines if you do not want to update a certain project. 
 info_dict=dict(
     
-                andazHotel=dict(
-                    das_id="001EC60020E0",
-                    proj_name="andaz",
-                    from_date=datetime(2017,4,15,0,0,0),
-                    to_date=datetime.utcnow(),
-                    ),                
 
-		andazHotel=dict(
-                    das_id="001EC60020E0",
-                    proj_name="andazHotel",
-                    from_date=datetime(2017,4,15,0,0,0),
-                    to_date=datetime.utcnow(),
-                    ),
                 
-                mad400=dict(
-                    das_id="001EC6052E9A",
-                    proj_name="codeGreen",
-                    from_date=datetime(2017,4,15,0,0,0),
-                    to_date=datetime.utcnow(),
-                    ),
+##                mad400=dict(
+##                    das_id="001EC6052E9A",
+##                    proj_name="codeGreen",
+##                    from_date=datetime(2017,5,14,0,0,0),
+##                    to_date=datetime(2017,5,24,0,0,0),
+##                   ),
+
+##                andaz=dict(
+##                    das_id="001EC60020E0",
+##                    proj_name="andaz",
+##                    from_date=datetime(2017,5,14,0,0,0),
+##                    to_date=datetime(2017,5,24,0,0,0),
+##                    ),                
+
+##		andazHotel=dict(
+##                    das_id="001EC60020E0",
+##                    proj_name="andazHotel",
+##                    from_date=datetime(2017,5,14,0,0,0),
+##                    to_date=datetime(2017,5,24,0,0,0),
+##                    ),
+
+##		woodhaven=dict(
+##                    das_id="001EC6051D64",
+##                    proj_name="codeGreen",
+##                    from_date=datetime(2017,5,14,0,0,0),
+##                    to_date=datetime(2017,5,24,0,0,0),
+##                    ),
                 
-                woodhaven=dict(
-                    das_id="001EC6051D64",
-                    proj_name="codeGreen",
-                    from_date=datetime(2017,4,15,0,0,0),
-                    to_date=datetime.utcnow(),
-                    ),
-                
-                cenwood=dict(
-                    das_id="001EC6002304",
-                    proj_name="tenantBilling",
-                    from_date=datetime(2017,4,15,0,0,0),
-                    to_date=datetime.utcnow(),
-                    ),
+##                cenwood=dict(
+##                    das_id="001EC6002304",
+##                    proj_name="tenantBilling",
+##                    from_date=datetime(2017,5,14,0,0,0),
+##                    to_date=datetime(2017,5,24,0,0,0),
+##                    ),
                 
                 three11=dict(
                     das_id="001EC6053C99",
                     proj_name="tenantBilling",
-                    from_date=datetime(2017,4,15,0,0,0),
-                    to_date=datetime.utcnow(),
-                    ),
+                    from_date=datetime(2017,7,6,0,0,0),
+                    to_date=datetime(2017,7,16,0,0,0),
+                    ),                
+       
                 
                )
 
