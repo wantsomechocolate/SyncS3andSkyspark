@@ -109,16 +109,21 @@ info_dict=dict(
 		tbp_900Hart=dict(
 		    das_id="001EC600284D",
 		    proj_name="tenantBilling",
-		    from_date=from_date,
-		    to_date=to_date,
-		    ),
-
-                tbp_mad400_TB=dict(
-                    das_id="001EC6052E9A",
+		    from_date=from_date,                tbp_900Hart=dict(
+                    das_id="001EC600284D",
                     proj_name="tenantBilling",
                     from_date=from_date,
                     to_date=to_date,
                     ),
+
+		    to_date=to_date,
+		    ),
+#                tbp_mad400_TB=dict(
+#                    das_id="001EC6052E9A",
+#                    proj_name="tenantBilling",
+#                    from_date=from_date,
+#                    to_date=to_date,
+#                    ),
 
 #                tbp_mad400_CG=dict(
 #                    das_id="001EC6052E9A",

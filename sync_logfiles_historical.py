@@ -13,11 +13,9 @@ from datetime import datetime
 ##from_date=datetime(2017,4,15,0,0,0),
 ##to_date=datetime.utcnow(),
 
-## The main dictionary for skyspark projects. Comment out lines if you do not want to update a certain project. 
+## The main dictionary for skyspark projects. Comment out lines if you do not want to update a certain project.
 info_dict=dict(
-    
 
-                
 ##                mad400=dict(
 ##                    das_id="001EC6052E9A",
 ##                    proj_name="codeGreen",
@@ -30,7 +28,7 @@ info_dict=dict(
 ##                    proj_name="andaz",
 ##                    from_date=datetime(2017,5,14,0,0,0),
 ##                    to_date=datetime(2017,5,24,0,0,0),
-##                    ),                
+##                    ),
 
 ##		andazHotel=dict(
 ##                    das_id="001EC60020E0",
@@ -45,22 +43,21 @@ info_dict=dict(
 ##                    from_date=datetime(2017,5,14,0,0,0),
 ##                    to_date=datetime(2017,5,24,0,0,0),
 ##                    ),
-                
+
 ##                cenwood=dict(
 ##                    das_id="001EC6002304",
 ##                    proj_name="tenantBilling",
 ##                    from_date=datetime(2017,5,14,0,0,0),
 ##                    to_date=datetime(2017,5,24,0,0,0),
 ##                    ),
-                
+
                 three11=dict(
                     das_id="001EC6053C99",
-                    proj_name="tenantBilling",
-                    from_date=datetime(2017,7,6,0,0,0),
-                    to_date=datetime(2017,7,16,0,0,0),
-                    ),                
-       
-                
+                    proj_name="codeGreen",
+                    from_date=datetime(2017,10,27,0,0,0),
+                    to_date=datetime(2017,10,28,0,0,0),
+                    ),
+
                )
 
 ## Initialize some variables

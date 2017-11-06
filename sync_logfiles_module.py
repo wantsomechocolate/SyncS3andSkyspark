@@ -55,7 +55,7 @@ def log_write(message, end='\n', base_dir="", print_to_terminal=False):
 
     if print_to_terminal == True:
         print("[{}]: {}{}".format(datetime.now(),message, end))
-    
+
     return None
 
 ## This function uses the above functions to get data out of postgres including files from s3
@@ -116,6 +116,7 @@ def save_files_newer_than(
     log_write("Starting to loop through records and save in: {}".format(save_dir), print_to_terminal=True)
     ## Save each record
     number_of_new_files = 0
+    number_of_not_success = 0
     number_of_not_found = 0
     number_of_existing_files = 0
     for record in records:
@@ -183,6 +184,10 @@ def save_files_newer_than(
             except AttributeError:
                 log_write("NOT FOUND IN S3: {} || ".format(filename), end="")
                 number_of_not_found+=1
+	    except OSError:
+		log_write("PROBLEM DOWNLOADING FILE: {} || ".format(filename), end="")
+		number_of_not_success+=1
+
         else:
             ## If it does, then move on.
             log_write("SKIPPED: {} || ".format(filename), end="")
@@ -191,6 +196,7 @@ def save_files_newer_than(
     ## Close database connections
     log_write("", end='\n')
     log_write("{} new logfiles added".format(number_of_new_files),  print_to_terminal=True)
+    log_write("{} logfiles that encountered errors while downloading".format(number_of_not_success), print_to_terminal=True)
     log_write("{} logfiles that could not be found on s3".format(number_of_not_found),  print_to_terminal=True)
     log_write("{} existing logfiles".format(number_of_existing_files),  print_to_terminal=True)
     log_write("Program complete, closing database connection", end='\n\n', print_to_terminal=True)
