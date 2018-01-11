@@ -144,10 +144,10 @@ def save_files_newer_than(
             server_id=server_id_device_id.split("_")[0]
             device_id=server_id_device_id.split("_")[1]
 
-	## I need to get the dbid of the logfile record and add it to the filename here so I have it available to 
-	## add to the filename.
-	## I'm going to go out on a limb here and say that the dbid is the first field in the record, fingers crossed!
-	logfile_dbid = str(record[0])
+        ## I need to get the dbid of the logfile record and add it to the filename here so I have it available to 
+        ## add to the filename.
+        ## I'm going to go out on a limb here and say that the dbid is the first field in the record, fingers crossed!
+        logfile_dbid = str(record[0])
 
         ## Put the filename together. server_id, device_id, date_added, and file extension
         filename = server_id+"_"+device_id+"_"+logfile_dbid+date_added_string+s3_key_file_ext
@@ -184,9 +184,9 @@ def save_files_newer_than(
             except AttributeError:
                 log_write("NOT FOUND IN S3: {} || ".format(filename), end="")
                 number_of_not_found+=1
-	    except OSError:
-		log_write("PROBLEM DOWNLOADING FILE: {} || ".format(filename), end="")
-		number_of_not_success+=1
+            except OSError:
+                log_write("PROBLEM DOWNLOADING FILE: {} || ".format(filename), end="")
+                number_of_not_success+=1
 
         else:
             ## If it does, then move on.
