@@ -10,8 +10,8 @@ from datetime import datetime
 
 ## Examples of datetimes
 ##from_date=datetime.utcnow()-timedelta(hours=23),
-from_date=datetime(2017,11,9,19,0,0),
-to_date = datetime(2017,11,14,20,0,0),
+from_date=datetime(2017,11,1,2,0,0),
+to_date = datetime(2017,11,2,5,1,0),
 #to_date=datetime.utcnow(),
 
 ## The main dictionary for skyspark projects. Comment out lines if you do not want to update a certain project.
@@ -59,12 +59,12 @@ info_dict=dict(
 ## #                   to_date=to_date,
 ## #                   ),
 
-##               tbp_311=dict(
-##                    das_id="001EC6053C99",
-##                    proj_name="tenantBilling",
-##                    from_date=from_date,
-##                    to_date=to_date,
-##                    ),
+#               tbp_311=dict(
+#                    das_id="001EC6053C99",
+#                    proj_name="tenantBilling",
+                    from_date=from_date,
+                    to_date=to_date,
+                    ),
 
 ## ##		tbp_610BWAY=dict(
 ## ##		    das_id="001EC600229C",
@@ -143,12 +143,12 @@ info_dict=dict(
 ## #		    to_date=to_date,
 ## #		    ),
 
-		tbp_900Hart=dict(
-		    das_id="001EC600284D",
-		    proj_name="tenantBilling",
-		    from_date=from_date,
-		    to_date=to_date,
-		    ),
+## #		tbp_900Hart=dict(
+## #		    das_id="001EC600284D",
+## #		    proj_name="tenantBilling",
+## #		    from_date=from_date,
+## #		    to_date=to_date,
+## #		    ),
 
 ##                tbp_mad400_TB=dict(
 ##                    das_id="001EC6052E9A",
@@ -219,4 +219,13 @@ for project, project_info in info_dict.items():
         table_name = TABLE_NAME,
         date_column=DATE_COLUMN,
         )
+
+
+
+
+
+
+
+
+
 
